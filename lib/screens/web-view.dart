@@ -11,37 +11,38 @@ class WebView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          child: Responsive(
-        mobile: UsersSection(),
-        tablet: Row(
-          children: [
-            Flexible(
-              flex: 3,
-              child: UsersSection(),
-            ),
-            Flexible(
-              flex: 5,
-              child: MessagesSection(),
-            ),
-          ],
+        child: Responsive(
+          mobile: UsersSection(),
+          tablet: Row(
+            children: [
+              Flexible(
+                flex: 3,
+                child: UsersSection(),
+              ),
+              Flexible(
+                flex: 5,
+                child: MessagesSection(),
+              ),
+            ],
+          ),
+          desktop: Row(
+            children: [
+              Flexible(
+                flex: 4,
+                child: UsersSection(),
+              ),
+              Flexible(
+                flex: 6,
+                child: MessagesSection(),
+              ),
+              Flexible(
+                flex: 3,
+                child: UserDetailsSection(),
+              )
+            ],
+          ),
         ),
-        desktop: Row(
-          children: [
-            Flexible(
-              flex: 4,
-              child: UsersSection(),
-            ),
-            Flexible(
-              flex: 6,
-              child: MessagesSection(),
-            ),
-            Flexible(
-              flex: 3,
-              child: UserDetailsSection(),
-            )
-          ],
-        ),
-      )),
+      ),
     );
   }
 }
