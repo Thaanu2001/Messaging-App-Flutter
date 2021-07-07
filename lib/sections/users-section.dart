@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:messaging_app_flutter/screens/messages-screen.dart';
+import 'package:messaging_app_flutter/transitions/slide-left-transition.dart';
 import 'package:messaging_app_flutter/widgets/message-card.dart';
 import 'package:messaging_app_flutter/widgets/story-circle.dart';
 
@@ -22,10 +24,12 @@ class UsersSection extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  height: 40,
-                  child: ClipOval(
-                    child: Image.asset('lib/assets/users/header-img.jpeg'),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Color(0xffe6f2ff),
+                    borderRadius: BorderRadius.circular(10),
                   ),
+                  child: Icon(Icons.search, color: Colors.grey[600]),
                 ),
                 Container(
                   child: Text(
@@ -37,13 +41,11 @@ class UsersSection extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                  height: 40,
+                  child: ClipOval(
+                    child: Image.asset('lib/assets/users/header-img.jpeg'),
                   ),
-                  child: Icon(Icons.search, color: Colors.grey[600]),
-                )
+                ),
               ],
             ),
           ),
@@ -51,6 +53,7 @@ class UsersSection extends StatelessWidget {
           Container(
             color: Color(0xffe8f3fe),
             padding: EdgeInsets.only(bottom: 10),
+            width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -120,23 +123,32 @@ class UsersSection extends StatelessWidget {
                   notificationLabel: '3',
                   time: '12.52 PM',
                 ),
-                if (!kIsWeb)
+                if (!kIsWeb || MediaQuery.of(context).size.width <= 880)
                   Divider(
                     height: 1,
                     thickness: 1,
                     indent: 20,
                     endIndent: 20,
                   ),
-                MessageCard(
-                  userName: 'Shelley Robertson',
-                  userImageLocation: 'lib/assets/users/user-3.jpg',
-                  isNewMsg: true,
-                  isSelected: true,
-                  message: 'Hi, Please check these',
-                  notificationLabel: '2',
-                  time: '12.35 PM',
+                InkWell(
+                  child: MessageCard(
+                    userName: 'Shey Robertson',
+                    userImageLocation: 'lib/assets/users/user-3.jpg',
+                    isNewMsg: true,
+                    isSelected: true,
+                    message: 'Please check these',
+                    notificationLabel: '2',
+                    time: '12.35 PM',
+                  ),
+                  onTap: () {
+                    if (!kIsWeb || MediaQuery.of(context).size.width <= 880) {
+                      Route route =
+                          SlideLeftTransition(widget: MessagesScreen());
+                      Navigator.push(context, route);
+                    }
+                  },
                 ),
-                if (!kIsWeb)
+                if (!kIsWeb || MediaQuery.of(context).size.width <= 880)
                   Divider(
                     height: 1,
                     thickness: 1,
@@ -148,7 +160,7 @@ class UsersSection extends StatelessWidget {
                   userImageLocation: 'lib/assets/users/user-4.jpg',
                   isNewMsg: true,
                   isSelected: false,
-                  message: 'Hey, Up for a call now?',
+                  message: 'Up for a call now?',
                   notificationLabel: '2',
                   time: '12.11 PM',
                 ),
@@ -189,7 +201,7 @@ class UsersSection extends StatelessWidget {
                   endIndent: 20,
                 ),
                 MessageCard(
-                  userName: 'Jessie Mckinney',
+                  userName: 'Jess Mckinney',
                   userImageLocation: 'lib/assets/users/user-6.jpg',
                   isNewMsg: false,
                   isSelected: false,

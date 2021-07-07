@@ -27,7 +27,10 @@ class MessageCard extends StatelessWidget {
       margin:
           (isSelected && kIsWeb) ? EdgeInsets.only(left: 10, right: 10) : null,
       decoration: BoxDecoration(
-        color: (isSelected && kIsWeb) ? Color(0xaacce4fd) : null,
+        color:
+            (isSelected && kIsWeb && MediaQuery.of(context).size.width >= 880)
+                ? Color(0xaacce4fd)
+                : null,
         borderRadius: BorderRadius.circular(10),
       ),
       padding: (kIsWeb)

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:messaging_app_flutter/responsive.dart';
+import 'package:messaging_app_flutter/sections/messages-section.dart';
 import 'package:messaging_app_flutter/sections/users-section.dart';
 
 class WebView extends StatelessWidget {
@@ -8,7 +10,25 @@ class WebView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Row(
+          // child: Row(
+          //   children: [
+          //     Flexible(
+          //       flex: 3,
+          //       child: UsersSection(),
+          //     ),
+          //     Flexible(
+          //       flex: 5,
+          //       child: MessagesSection(),
+          //     ),
+          //     Flexible(
+          //       flex: 3,
+          //       child: Container(),
+          //     )
+          //   ],
+          // ),
+          child: Responsive(
+        mobile: UsersSection(),
+        tablet: Row(
           children: [
             Flexible(
               flex: 3,
@@ -16,7 +36,19 @@ class WebView extends StatelessWidget {
             ),
             Flexible(
               flex: 5,
-              child: Container(),
+              child: MessagesSection(),
+            ),
+          ],
+        ),
+        desktop: Row(
+          children: [
+            Flexible(
+              flex: 4,
+              child: UsersSection(),
+            ),
+            Flexible(
+              flex: 6,
+              child: MessagesSection(),
             ),
             Flexible(
               flex: 3,
@@ -24,7 +56,7 @@ class WebView extends StatelessWidget {
             )
           ],
         ),
-      ),
+      )),
     );
   }
 }
