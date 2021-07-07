@@ -13,7 +13,6 @@ class MessagingApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Messaging App',
-      //theme: ThemeData(fontFamily: 'Poppins'),
       home: (kIsWeb) ? WebView() : MobileView(),
     );
   }

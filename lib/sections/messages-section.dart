@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:messaging_app_flutter/screens/user-details-screen.dart';
+import 'package:messaging_app_flutter/transitions/slide-left-transition.dart';
 import 'package:messaging_app_flutter/widgets/message.dart';
 import 'package:messaging_app_flutter/widgets/send-message-bar.dart';
 
@@ -28,11 +32,12 @@ class MessagesSection extends StatelessWidget {
                     10,
                     20,
                     10)
-                : EdgeInsets.fromLTRB(30, 50, 30, 10),
+                : EdgeInsets.fromLTRB(30, (Platform.isIOS) ? 50 : 35, 30, 10),
             color: Color(0xffcce4fd),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                //* Back button
                 if (!kIsWeb || MediaQuery.of(context).size.width <= 880)
                   InkWell(
                     child: Container(
@@ -46,6 +51,7 @@ class MessagesSection extends StatelessWidget {
                     ),
                     onTap: () => Navigator.pop(context),
                   ),
+                //* User image
                 Container(
                   height: 40,
                   margin: EdgeInsets.only(left: 20, right: 15),
@@ -53,6 +59,7 @@ class MessagesSection extends StatelessWidget {
                     child: Image.asset('lib/assets/users/user-3.jpg'),
                   ),
                 ),
+                //* User name and status
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -78,6 +85,7 @@ class MessagesSection extends StatelessWidget {
                     ),
                   ],
                 ),
+                //* Details Button
                 Flexible(
                   child: Align(
                     alignment: Alignment.centerRight,
@@ -95,7 +103,14 @@ class MessagesSection extends StatelessWidget {
                                 : Icons.more_horiz,
                             color: Colors.grey[600]),
                       ),
-                      onTap: () => Navigator.pop(context),
+                      onTap: () {
+                        if (!kIsWeb ||
+                            MediaQuery.of(context).size.width <= 880) {
+                          Route route =
+                              SlideLeftTransition(widget: UserDetailsScreen());
+                          Navigator.push(context, route);
+                        }
+                      },
                     ),
                   ),
                 )

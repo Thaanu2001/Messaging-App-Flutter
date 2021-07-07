@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:messaging_app_flutter/screens/messages-screen.dart';
@@ -18,7 +20,7 @@ class UsersSection extends StatelessWidget {
           Container(
             padding: (kIsWeb)
                 ? EdgeInsets.fromLTRB(20, 10, 20, 10)
-                : EdgeInsets.fromLTRB(30, 50, 30, 10),
+                : EdgeInsets.fromLTRB(30, (Platform.isIOS) ? 50 : 35, 30, 10),
             color: Color(0xffcce4fd),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -136,8 +138,8 @@ class UsersSection extends StatelessWidget {
                     userImageLocation: 'lib/assets/users/user-3.jpg',
                     isNewMsg: true,
                     isSelected: true,
-                    message: 'Please check these',
-                    notificationLabel: '2',
+                    message: 'Really? 😅🥳',
+                    notificationLabel: '1',
                     time: '12.35 PM',
                   ),
                   onTap: () {

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SendMessageBar extends StatelessWidget {
@@ -6,7 +9,7 @@ class SendMessageBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 80,
+      height: (!kIsWeb && (Platform.isIOS)) ? 80 : null,
       width: double.infinity,
       padding: EdgeInsets.all(10),
       color: Color(0xffcce4fd),
